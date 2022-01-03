@@ -1,0 +1,14 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "description": "ChatFrontend",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.45.2"
+  }
+}

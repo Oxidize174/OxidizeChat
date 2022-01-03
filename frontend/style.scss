@@ -1,0 +1,25 @@
+#messages{
+  height: 400px;
+  width: 400px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.message{
+  border: 1px solid darkgrey;
+  padding: 4px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+
+  .user{
+    font-size: 12px;
+    color: blue;
+  }
+  .text{
+    font-size: 14px;
+  }
+}
