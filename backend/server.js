@@ -20,6 +20,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to application." });
 });
 
+const db = require("./models");
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+});
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
