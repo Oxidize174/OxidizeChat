@@ -3,11 +3,7 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-    origin: "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -23,9 +19,11 @@ app.get("/", (req, res) => {
 const db = require("./models");
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
+    require("./models/test-data")(db);
 });
 
-// set port, listen for requests
+require("./routes")(app);
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
