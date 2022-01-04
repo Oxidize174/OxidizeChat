@@ -1,21 +1,25 @@
 $(document).ready(function () {
-    $.ajax({
-        url: "http://localhost:8080/api/messages/get",
-        method: "GET",
-        context: document.body,
-    }).done(function (data) {
-        console.log(data)
-        var messages = "";
-        $.each(data, function (index, val) {
-            messages += `
+    function getAllMessages() {
+        $.ajax({
+            url: "http://localhost:8080/api/messages/get",
+            method: "GET",
+            context: document.body,
+        }).done(function (data) {
+            console.log(data)
+            var messages = "";
+            $.each(data, function (index, val) {
+                messages += `
                 <div class="message">
-                    <div class="user">${val.userId}</div>
+                    <div class="user">${val.user.name}</div>
                     <div class="text">${val.text}</div>
                 </div>
            `
+            })
+            $("#messages").html(messages)
         })
-        $("#messages").html(messages)
-    })
+    }
+
+    getAllMessages()
 
     $("#send_button").click(function () {
         $.ajax({
@@ -26,10 +30,11 @@ $(document).ready(function () {
                 "userId": 1,
                 "text": $("#input_message").val()
             }
-
         }).done(function (data) {
             console.log(data)
+            getAllMessages()
         });
+        $('#input_message').val('');
 
     })
 

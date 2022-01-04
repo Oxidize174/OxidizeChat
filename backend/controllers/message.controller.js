@@ -31,7 +31,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Message.findAll()
+    Message.findAll({include: "user"})
         .then(data => {
             res.send(data);
         })
