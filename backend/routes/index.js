@@ -8,6 +8,7 @@ module.exports = app => {
     router.get("/messages/get", message.findAll)
 
     router.post("/user/signup", user.create);
+    router.get("/users/get", user.findAll)
 
     app.use('/api', router);
 };

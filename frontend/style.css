@@ -1,15 +1,27 @@
-#messages {
+* {
+  box-sizing: border-box;
+}
+
+#area {
+  display: flex;
   height: 400px;
+}
+
+#messages {
+  height: 100%;
   width: 400px;
   border: 1px solid grey;
   border-radius: 8px;
   padding: 16px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+#controls {
+  margin-top: 20px;
 }
 
 .message {
@@ -24,6 +36,30 @@
 }
 .message .text {
   font-size: 14px;
+}
+
+#users {
+  width: 200px;
+  border: 1px solid darkgrey;
+  padding: 16px;
+  border-radius: 4px;
+  margin-right: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#users .user {
+  padding: 5px 0;
+}
+#users .user .name {
+  font-size: 18px;
+  font-weight: bold;
+}
+#users .user .login {
+  font-weight: lighter;
+  font-size: 12px;
+}
+#users .user:not(:last-child) {
+  border-bottom: 1px solid grey;
 }
 
 /*# sourceMappingURL=style.css.map */

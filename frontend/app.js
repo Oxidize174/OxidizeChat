@@ -35,7 +35,24 @@ $(document).ready(function () {
             getAllMessages()
         });
         $('#input_message').val('');
+    })
 
+    $.ajax({
+        url: "http://localhost:8080/api/users/get",
+        method: "GET",
+        context: document.body,
+    }).done(function (data) {
+        console.log(data)
+        var users = "";
+        $.each(data, function (index, val) {
+            users += `
+                <div class="user">
+                    <div class="name">${val.name}</div>
+                    <div class="login">${val.login}</div>
+                </div>
+           `
+        })
+        $("#users").html(users)
     })
 
 });
