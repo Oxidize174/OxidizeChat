@@ -5,10 +5,11 @@ module.exports = app => {
     const router = require("express").Router();
 
     router.post("/messages/create", message.create);
-    router.get("/messages/get", message.findAll)
+    router.get("/messages/grouped", message.findGroup)
 
     router.post("/user/signup", user.create);
     router.get("/users/get", user.findAll)
+
 
     app.use('/api', router);
 };

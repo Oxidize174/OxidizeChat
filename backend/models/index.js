@@ -19,11 +19,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.message = require("./message.model.js")(sequelize, Sequelize);
 db.user = require("./user.model.js")(sequelize, Sequelize);
-db.group = require("./group.model.js")(sequelize, Sequelize);
-db.participants = require("./participants.model.js")(sequelize, Sequelize);
-
-require("./relations")(sequelize)
+db.message = require("./message.model.js")(sequelize, Sequelize);
 
 module.exports = db;

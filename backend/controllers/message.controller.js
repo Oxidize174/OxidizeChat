@@ -1,7 +1,7 @@
 const db = require("../models");
 const Message = db.message;
+const Group = db.group;
 const Op = db.Sequelize.Op;
-
 
 exports.create = (req, res) => {
     // Validate request
@@ -11,13 +11,18 @@ exports.create = (req, res) => {
         });
         return;
     }
+    if (!req.body.userMe || !req.body.userYou) {
+        res.status(400).send({
+            message: "Users can not be empty!"
+        });
+        return;
+    }
 
     const message = {
         text: req.body.text,
-        userId: req.body.userId,
-       // groupId: 0
+        userFrom: req.body.userMe,
+        userTo: req.body.userYou,
     };
-
     Message.create(message)
         .then(data => {
             res.send(data);
@@ -30,8 +35,29 @@ exports.create = (req, res) => {
         });
 };
 
-exports.findAll = (req, res) => {
-    Message.findAll({include: "user"})
+exports.findGroup = (req, res) => {
+    if (!req.query.userMe || !req.query.userYou) {
+        res.status(400).send({
+            message: "Users can not be empty!"
+        });
+        return;
+    }
+
+    Message.findAll({
+        // include: "users",
+        where: {
+            [Op.or]: [
+                {
+                    userTo: req.query.userMe,
+                    userFrom: req.query.userYou,
+                },
+                {
+                    userFrom: req.query.userMe,
+                    userTo: req.query.userYou,
+                },
+            ]
+        }
+    })
         .then(data => {
             res.send(data);
         })

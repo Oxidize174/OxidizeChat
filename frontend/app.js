@@ -1,7 +1,9 @@
 $(document).ready(function () {
+    const API_BASE = "http://192.168.1.87:8080/api"
+
     function getAllMessages() {
         $.ajax({
-            url: "http://localhost:8080/api/messages/get",
+            url: API_BASE + "/messages/get",
             method: "GET",
             context: document.body,
         }).done(function (data) {
@@ -19,26 +21,25 @@ $(document).ready(function () {
         })
     }
 
-    getAllMessages()
-
     $("#send_button").click(function () {
         $.ajax({
-            url: "http://localhost:8080/api/messages/create",
+            url: API_BASE + "/messages/create",
             method: "POST",
             context: document.body,
             data: {
-                "userId": 1,
+                "userMe": 1,
+                "userYou": 2,
                 "text": $("#input_message").val()
             }
         }).done(function (data) {
             console.log(data)
-            getAllMessages()
+            //getAllMessages()
         });
         $('#input_message').val('');
     })
 
     $.ajax({
-        url: "http://localhost:8080/api/users/get",
+        url: API_BASE + "/users/get",
         method: "GET",
         context: document.body,
     }).done(function (data) {
@@ -53,7 +54,29 @@ $(document).ready(function () {
            `
         })
         $("#users").html(users)
+
+        $(".user").click(function () {
+            const $name = $($(this).find(".name")[0])
+            $("#header .header-name").html($name.html())
+            $.ajax({
+                url: API_BASE + "/messages/grouped?userMe=" + 1 + "&userYou=" + 2,
+                method: "GET",
+                context: document.body,
+            }).done(function (data) {
+                var messages = "";
+                $.each(data, function (index, val) {
+                    messages += `
+                        <div class="message">
+                            <div class="user">${val.userFrom}</div>
+                            <div class="text">${val.text}</div>
+                        </div>
+                   `
+                })
+                $("#messages").html(messages)
+            })
+        })
     })
+
 
 });
 
