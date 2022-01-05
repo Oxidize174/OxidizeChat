@@ -2,12 +2,12 @@ module.exports = (db) => {
     db.user.bulkCreate([
         {
             "name": "Dmitry",
-            "login": "Oxy",
+            "login": "Oxydize",
             "password": "123456",
         },
         {
             "name": "Ilya",
-            "login": "iksent",
+            "login": "Iksent",
             "password": "123456",
         }
     ]).then(() => {

@@ -3,21 +3,26 @@
 }
 
 #area {
-  display: flex;
-  height: 400px;
+  display: inline-flex;
+  width: 100%;
+  height: 38.5em;
 }
 
 #mess_area {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 400px;
-  border: 1px solid grey;
-  border-radius: 8px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 0 14px 14px 0;
 }
 #mess_area #header {
-  padding: 8px;
-  border-bottom: 1px solid purple;
+  padding: 12px;
+  border-bottom: 2px solid black;
+  font-size: 24px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 13px 0 0;
 }
 
 #messages {
@@ -28,12 +33,30 @@
   align-items: flex-start;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: rgba(0, 1, 0, 0.8);
+}
+
+#messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+#messages::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+  border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #f87f71, #fdc0b7);
 }
 
 #controls {
   display: flex;
   padding: 8px;
-  border-top: 1px solid purple;
+  border-top: 2px solid black;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 15px 0;
 }
 #controls input {
   margin-right: 8px;
@@ -41,36 +64,41 @@
 }
 
 .message {
-  border: 1px solid darkgrey;
   padding: 4px;
   border-radius: 4px;
   margin-bottom: 4px;
+  background-color: grey;
 }
 .message .user {
-  font-size: 12px;
-  color: blue;
+  font-size: 14px;
+  color: white;
 }
 .message .text {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #users {
-  width: 200px;
-  border: 1px solid darkgrey;
-  border-radius: 8px;
-  margin-right: 8px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 14px 0 0 14px;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 #users .user {
   cursor: pointer;
   padding: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
 }
 #users .user:not(:last-child) {
   border-bottom: 1px solid grey;
 }
 #users .user:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+#users .user:active {
+  background-color: darkgrey;
 }
 #users .user .name {
   font-size: 18px;
@@ -79,6 +107,14 @@
 #users .user .login {
   font-weight: lighter;
   font-size: 12px;
+}
+
+#send_button {
+  border: 1px solid darkgrey;
+  border-radius: 25px;
+}
+#send_button:active {
+  background-color: salmon;
 }
 
 /*# sourceMappingURL=style.css.map */
