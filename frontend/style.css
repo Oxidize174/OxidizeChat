@@ -59,6 +59,9 @@
   border-radius: 0 0 13px 0;
   color: white;
 }
+#controls.hidden {
+  display: none;
+}
 #controls input {
   margin-right: 8px;
   flex: 1;

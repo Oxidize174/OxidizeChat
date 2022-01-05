@@ -1,7 +1,24 @@
 $(document).ready(function () {
     const API_BASE = "http://192.168.1.87:8080/api"
+
     //отправка сообщений
     $("#send_button").click(function () {
+        sendMessage()
+    })
+
+    $input = $('#input_message')
+    $input.on("keypress", function (event) {
+        //keyCode = 13 = ENTER
+        if (event.keyCode === 13) {
+            sendMessage()
+        }
+    });
+
+    function sendMessage() {
+        const text = $input.val()
+        if (!text) {
+            return
+        }
         $.ajax({
             url: API_BASE + "/messages/create",
             method: "POST",
@@ -9,14 +26,15 @@ $(document).ready(function () {
             data: {
                 "userMe": 1,
                 "userYou": $(".user.active").attr('data-id'),
-                "text": $("#input_message").val()
+                "text": text,
             }
         }).done(function (data) {
             getGroupMessages()
             console.log(data)
         });
-        $('#input_message').val('');
-    })
+        $input.val('');
+    }
+
     //Получение пользователей
     $.ajax({
         url: API_BASE + "/users/get",
@@ -39,6 +57,7 @@ $(document).ready(function () {
         $(".user").click(function () {
             const $user = $(this)
 
+            $("#controls").removeClass('hidden')
             $(".user").removeClass('active')
             $user.addClass('active')
 
@@ -66,7 +85,11 @@ $(document).ready(function () {
                     </div>
                 `
             })
-            $("#messages").html(messages)
+            const $messages = $("#messages")
+            $messages.html(messages)
+            $messages.animate({
+                scrollTop: $messages[0].scrollHeight
+            }, 0);
         })
     }
 

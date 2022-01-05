@@ -23,7 +23,6 @@
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 0 13px 0 0;
-
   }
 }
 
@@ -36,7 +35,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   background-color: rgba(0, 1, 0, 0.8);
-
 }
 
 #messages::-webkit-scrollbar {
@@ -55,13 +53,16 @@
 }
 
 #controls {
-
   display: flex;
   padding: 8px;
   border-top: 2px solid black;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 0 0 13px 0;
   color: white;
+
+  &.hidden {
+    display: none;
+  }
 
   input {
     margin-right: 8px;
