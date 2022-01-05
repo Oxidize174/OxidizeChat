@@ -10,7 +10,7 @@ $(document).ready(function () {
                 password: $("#password").val()
             }
         }).done(function (data) {
-            window.location.href = 'index.html'
+            window.location.href = 'chat.html'
         });
         return false;
     })
