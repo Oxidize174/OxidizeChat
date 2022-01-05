@@ -1,23 +1,34 @@
 const express = require("express");
+const session = require("express-session")
 const cors = require("cors");
-
+const passport = require("passport")
 const app = express();
+const loginStrategy = require("./config/auth.config")
+const flash = require("connect-flash")
+
+passport.serializeUser((user, done) => done(null, user))
+passport.deserializeUser((user, done) => done(null, user))
 
 app.use(cors());
-
 // parse requests of content-type - application/json
 app.use(express.json());
-
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
+
+app.use(session({secret: 'secret', resave: false, saveUninitialized: true}))
+app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(loginStrategy);
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to application." });
+    res.json({message: "Welcome to application."});
 });
 
 const db = require("./models");
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({force: true}).then(() => {
     console.log("Drop and re-sync db.");
     require("./models/test-data")(db);
 });

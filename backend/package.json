@@ -10,9 +10,13 @@
   "author": "Dmitry",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cors": "^2.8.5",
     "express": "^4.17.2",
+    "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
     "sequelize": "^7.0.0-alpha.4"
   }
 }
