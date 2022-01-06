@@ -1,10 +1,11 @@
 $(document).ready(function () {
+
     var currentUser
     $.ajax({
         url: API_BASE + "/user/current",
         method: "GET"
-    }).done(function (data){
-        currentUser=data
+    }).done(function (data) {
+        currentUser = data
     })
 
     //отправка сообщений
@@ -19,6 +20,16 @@ $(document).ready(function () {
             sendMessage()
         }
     });
+
+    //выход из чата
+    $("#exit").click(function () {
+        $.ajax({
+            url: API_BASE + "/user/logout",
+            method: "POST"
+        }).done(function (data) {
+            window.location.href = 'login.html'
+        })
+    })
 
     function sendMessage() {
         const text = $input.val()

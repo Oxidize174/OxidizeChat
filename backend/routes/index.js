@@ -12,6 +12,7 @@ module.exports = app => {
     router.post('/user/signin', user.login)
     router.get("/users/get", mustBeAuthenticated, user.findAll)
     router.get("/user/current", mustBeAuthenticated, user.getCurrentUser)
+    router.post("/user/logout", mustBeAuthenticated, user.logout)
 
     app.use('/api', router);
 };

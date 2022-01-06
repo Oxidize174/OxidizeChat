@@ -1,10 +1,17 @@
 const db = require("../models");
 const passport = require("passport");
+const {logout} = require("passport/lib/http/request");
+const {response} = require("express");
 const User = db.user;
 const Op = db.Sequelize.Op;
 
 exports.getCurrentUser = (req, res) => {
     return res.send(req.user)
+}
+
+exports.logout = (req, res) => {
+    req.logout()
+    return res.send()
 }
 
 exports.login = (req, res, next) => {
