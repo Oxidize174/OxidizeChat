@@ -1,9 +1,6 @@
 const db = require("../models");
 const passport = require("passport");
-const {logout} = require("passport/lib/http/request");
-const {response} = require("express");
 const User = db.user;
-const Op = db.Sequelize.Op;
 
 exports.getCurrentUser = (req, res) => {
     return res.send(req.user)
@@ -64,7 +61,7 @@ exports.create = (req, res, next) => {
 
     User.create(user)
         .then(data => {
-            req.logIn(user, function (err) {
+            req.logIn(data, function (err) {
                 if (err) {
                     next(err)
                 } else {

@@ -8,13 +8,9 @@ const flash = require("connect-flash")
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser(function (user, done) {
-    db.user.scope("withoutPassword").findByPk(user.id)
-        .then(data => {
-            done(null, data)
-        })
-        .catch(err => {
-            done(err, null)
-        })
+    const userWithoutPassword = {...user}
+    delete userWithoutPassword.password
+    done(null, userWithoutPassword)
 })
 
 app.use(cors({
