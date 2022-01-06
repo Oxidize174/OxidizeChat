@@ -240,3 +240,5 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,node
 /.idea/watcherTasks.xml
+/.idea/jsLibraryMappings.xml
+/.idea/inspectionProfiles/Project_Default.xml

@@ -17,14 +17,26 @@ body {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid #e1e1e1;
 }
 #mess_area #header {
-  padding: 12px;
-  border-bottom: 2px solid black;
+  display: flex;
+  padding: 10.5px;
   font-size: 24px;
+  color: #000000;
+  background-color: #ffffff;
+}
+#mess_area #exit {
+  margin-left: auto;
+  width: 80px;
+  height: 20px;
+  border: 1px solid #545454;
+  border-radius: 25px;
+}
+#mess_area #exit:active {
+  border: 2px solid #ff0000;
+  background-color: #de7373;
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #messages {
@@ -35,11 +47,11 @@ body {
   align-items: flex-start;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: rgba(0, 1, 0, 0.8);
+  background-color: #8ec3f6;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -50,64 +62,59 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: linear-gradient(180deg, #f87f71, #fdc0b7);
+  background: linear-gradient(180deg, #c4c4c4, #595959, #c4c4c4);
 }
 
 #controls {
   display: flex;
   padding: 8px;
-  border-top: 2px solid black;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
+  background-color: #ffffff;
+  color: #000000;
 }
 #controls.hidden {
   display: none;
 }
 #controls input {
+  border: none;
   margin-right: 8px;
   flex: 1;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  border-radius: 13px;
-  border: 1px solid black;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .message {
   padding: 4px;
   border-radius: 4px;
   margin-bottom: 4px;
-  background-color: grey;
+  background-color: #ffffff;
 }
 .message .user {
   font-size: 14px;
-  color: white;
+  color: #000000;
 }
 .message .text {
   font-size: 16px;
-  color: white;
+  color: #000000;
 }
 
 #users {
   width: 400px;
-  border: 1px solid black;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #ffffff;
 }
 #users .user {
   cursor: pointer;
   padding: 8px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: white;
-}
-#users .user:not(:last-child) {
-  border-bottom: 1px solid grey;
+  background-color: #ffffff;
+  color: #000000;
 }
 #users .user:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 #users .user.active {
-  background-color: lightseagreen;
+  background-color: #6c9ee1;
+  color: white;
 }
 #users .user .name {
   font-size: 18px;
@@ -119,11 +126,12 @@ body {
 }
 
 #send_button {
-  border: 1px solid darkgrey;
+  border: 1px solid #ffffff;
   border-radius: 25px;
 }
 #send_button:active {
-  background-color: salmon;
+  background-color: #3f88dc;
+  color: white;
 }
 
 /*# sourceMappingURL=chat.css.map */
