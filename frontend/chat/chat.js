@@ -4,7 +4,7 @@ $(document).ready(function () {
         sendMessage()
     })
 
-    $input = $('#input_message')
+    const $input = $('#input_message')
     $input.on("keypress", function (event) {
         //keyCode = 13 = ENTER
         if (event.keyCode === 13) {
@@ -21,9 +21,8 @@ $(document).ready(function () {
             url: API_BASE + "/messages/create",
             method: "POST",
             data: {
-                "userMe": 1,
-                "userYou": $(".user.active").attr('data-id'),
-                "text": text,
+                companionUser: $(".user.active").attr('data-id'),
+                text: text,
             }
         }).done(function (data) {
             getGroupMessages()
@@ -75,7 +74,7 @@ $(document).ready(function () {
     //запрос сообщений с пользователем
     function getGroupMessages() {
         $.ajax({
-            url: API_BASE + "/messages/grouped?userMe=" + 1 + "&userYou=" + $(".user.active").attr('data-id'),
+            url: API_BASE + "/messages/grouped?companionUser=" + $(".user.active").attr('data-id'),
             method: "GET",
         }).done(function (data) {
             var messages = "";

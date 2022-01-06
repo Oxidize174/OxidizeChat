@@ -1,6 +1,5 @@
 const db = require("../models");
 const Message = db.message;
-const Group = db.group;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -11,7 +10,7 @@ exports.create = (req, res) => {
         });
         return;
     }
-    if (!req.body.userMe || !req.body.userYou) {
+    if (!req.body.companionUser) {
         res.status(400).send({
             message: "Users can not be empty!"
         });
@@ -20,8 +19,8 @@ exports.create = (req, res) => {
 
     const message = {
         text: req.body.text,
-        userFrom: req.body.userMe,
-        userTo: req.body.userYou,
+        userFrom: req.user.id, // Текущий авторизованный пользователь
+        userTo: req.body.companionUser, // Собеседник
     };
     Message.create(message)
         .then(data => {
@@ -36,7 +35,7 @@ exports.create = (req, res) => {
 };
 
 exports.findGroup = (req, res) => {
-    if (!req.query.userMe || !req.query.userYou) {
+    if (!req.query.companionUser) {
         res.status(400).send({
             message: "Users can not be empty!"
         });
@@ -44,16 +43,15 @@ exports.findGroup = (req, res) => {
     }
 
     Message.findAll({
-        // include: "users",
         where: {
             [Op.or]: [
                 {
-                    userTo: req.query.userMe,
-                    userFrom: req.query.userYou,
+                    userTo: req.user.id, // Текущий авторизованный пользователь
+                    userFrom: req.query.companionUser, // Собеседник
                 },
                 {
-                    userFrom: req.query.userMe,
-                    userTo: req.query.userYou,
+                    userFrom: req.user.id,
+                    userTo: req.query.companionUser,
                 },
             ]
         }
