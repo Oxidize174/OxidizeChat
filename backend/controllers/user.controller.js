@@ -3,6 +3,10 @@ const passport = require("passport");
 const User = db.user;
 const Op = db.Sequelize.Op;
 
+exports.getCurrentUser = (req, res) => {
+    return res.send(req.user)
+}
+
 exports.login = (req, res, next) => {
     const callback = function (err, user, info) {
         if (err) {
@@ -14,7 +18,9 @@ exports.login = (req, res, next) => {
             });
         }
         req.logIn(user, function (err) {
-            if (err) { return next(err); }
+            if (err) {
+                return next(err);
+            }
             return res.send()
         });
     }

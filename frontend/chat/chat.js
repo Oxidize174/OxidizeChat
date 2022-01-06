@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    var currentUser
+    $.ajax({
+        url: API_BASE + "/user/current",
+        method: "GET"
+    }).done(function (data){
+        currentUser=data
+    })
+
     //отправка сообщений
     $("#send_button").click(function () {
         sendMessage()
@@ -78,11 +86,10 @@ $(document).ready(function () {
             method: "GET",
         }).done(function (data) {
             var messages = "";
-            $.each(data, function (index, val) {
+            $.each(data, function (index, message) {
                 messages += `
-                    <div class="message">
-                        <div class="user">${val.userFrom}</div>
-                        <div class="text">${val.text}</div>
+                    <div class="message ${currentUser.id === message.userFrom ? "my-message" : "companion-message"}">
+                        <div class="text">${message.text}</div>
                     </div>
                 `
             })

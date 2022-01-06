@@ -10,7 +10,7 @@ passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
 
 app.use(cors({
-    origin: 'http://localhost:2015',
+    origin: 'http://localhost',
     credentials: true,
 }));
 // parse requests of content-type - application/json

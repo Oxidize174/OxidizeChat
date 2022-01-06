@@ -90,15 +90,13 @@ body {
 }
 
 .message {
-
   padding: 4px;
   border-radius: 4px;
   margin-bottom: 4px;
   background-color: #ffffff;
 
-  .user {
-    font-size: 14px;
-    color: #000000;
+  &.my-message {
+    margin-left: auto;
   }
 
   .text {

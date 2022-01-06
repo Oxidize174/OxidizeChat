@@ -11,6 +11,7 @@ module.exports = app => {
     router.post("/user/signup", user.create);
     router.post('/user/signin', user.login)
     router.get("/users/get", mustBeAuthenticated, user.findAll)
+    router.get("/user/current", mustBeAuthenticated, user.getCurrentUser)
 
     app.use('/api', router);
 };
