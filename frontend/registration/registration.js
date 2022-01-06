@@ -3,7 +3,6 @@ $(document).ready(function () {
         $.ajax({
             url: API_BASE + "/user/signup",
             method: "POST",
-            context: document.body,
             data: {
                 name: $("#name").val(),
                 login: $("#login").val(),

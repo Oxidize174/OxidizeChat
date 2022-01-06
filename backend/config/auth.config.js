@@ -1,13 +1,19 @@
 const localStrategy = require("passport-local").Strategy;
 const db = require("../models");
 
+function mustBeAuthenticated(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({message: 'Authorization required'});
+    }
+    next();
+}
+
 const loginStrategy = new localStrategy(
     {
         usernameField: 'login',
         passwordField: 'password',
     },
     function (username, password, done) {
-        console.log('localStrategy > username, password', username, password)
         db.user.findOne({
             where: {
                 login: username
@@ -30,4 +36,4 @@ const loginStrategy = new localStrategy(
     }
 )
 
-module.exports = loginStrategy
+module.exports = {loginStrategy, mustBeAuthenticated}

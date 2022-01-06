@@ -20,7 +20,6 @@ $(document).ready(function () {
         $.ajax({
             url: API_BASE + "/messages/create",
             method: "POST",
-            context: document.body,
             data: {
                 "userMe": 1,
                 "userYou": $(".user.active").attr('data-id'),
@@ -29,6 +28,10 @@ $(document).ready(function () {
         }).done(function (data) {
             getGroupMessages()
             console.log(data)
+        }).catch(function (err) {
+            if (err.status === 401) {
+                window.location.href = 'login.html'
+            }
         });
         $input.val('');
     }
@@ -37,9 +40,7 @@ $(document).ready(function () {
     $.ajax({
         url: API_BASE + "/users/get",
         method: "GET",
-        context: document.body,
     }).done(function (data) {
-        console.log(data)
         var users = "";
         $.each(data, function (index, val) {
             users += `
@@ -65,6 +66,10 @@ $(document).ready(function () {
 
             getGroupMessages()
         })
+    }).catch(function (err) {
+        if (err.status === 401) {
+            window.location.href = 'login.html'
+        }
     })
 
     //запрос сообщений с пользователем
@@ -72,7 +77,6 @@ $(document).ready(function () {
         $.ajax({
             url: API_BASE + "/messages/grouped?userMe=" + 1 + "&userYou=" + $(".user.active").attr('data-id'),
             method: "GET",
-            context: document.body,
         }).done(function (data) {
             var messages = "";
             $.each(data, function (index, val) {
@@ -88,6 +92,10 @@ $(document).ready(function () {
             $messages.animate({
                 scrollTop: $messages[0].scrollHeight
             }, 0);
+        }).catch(function (err) {
+            if (err.status === 401) {
+                window.location.href = 'login.html'
+            }
         })
     }
 

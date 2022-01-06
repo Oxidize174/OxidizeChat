@@ -1,1 +1,10 @@
-const API_BASE = "http://192.168.1.87:8080/api"
+const API_BASE = "http://localhost:8080/api"
+
+$(document).ready(function () {
+    $.ajaxSetup({
+        context: document.body,
+        xhrFields: {
+            withCredentials: true
+        }
+    })
+})

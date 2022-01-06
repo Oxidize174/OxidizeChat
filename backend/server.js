@@ -3,13 +3,16 @@ const session = require("express-session")
 const cors = require("cors");
 const passport = require("passport")
 const app = express();
-const loginStrategy = require("./config/auth.config")
+const {loginStrategy} = require("./config/auth.config")
 const flash = require("connect-flash")
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost',
+    credentials: true,
+}));
 // parse requests of content-type - application/json
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
