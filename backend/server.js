@@ -7,7 +7,15 @@ const {loginStrategy} = require("./config/auth.config")
 const flash = require("connect-flash")
 
 passport.serializeUser((user, done) => done(null, user))
-passport.deserializeUser((user, done) => done(null, user))
+passport.deserializeUser(function (user, done) {
+    db.user.scope("withoutPassword").findByPk(user.id)
+        .then(data => {
+            done(null, data)
+        })
+        .catch(err => {
+            done(err, null)
+        })
+})
 
 app.use(cors({
     origin: 'http://localhost',

@@ -81,7 +81,7 @@ exports.create = (req, res, next) => {
 };
 
 exports.findAll = (req, res) => {
-    User.findAll()
+    User.scope("withoutPassword").findAll()
         .then(data => {
             res.send(data);
         })
