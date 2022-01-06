@@ -32,4 +32,15 @@
   outline: none;
 }
 
+#error {
+  background-color: #da6363;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=auth.css.map */
