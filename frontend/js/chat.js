@@ -29,7 +29,7 @@ $(document).ready(function () {
         $.ajax({
             url: API_BASE + "/user/logout",
             method: "POST"
-        }).done(function (data) {
+        }).done(function () {
             window.location.href = 'login.html'
         })
     })
