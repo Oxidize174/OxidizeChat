@@ -1,6 +1,9 @@
+var currentUser
+
 $(document).ready(function () {
 
-    var currentUser
+    websocket.connect()
+
     $.ajax({
         url: API_BASE + "/user/current",
         method: "GET"
@@ -36,22 +39,15 @@ $(document).ready(function () {
         if (!text) {
             return
         }
-        $.ajax({
-            url: API_BASE + "/messages/create",
-            method: "POST",
-            data: {
+        $input.val('');
+
+        websocket.send(
+            'message:send',
+            {
                 companionUser: $(".user.active").attr('data-id'),
                 text: text,
             }
-        }).done(function (data) {
-            getGroupMessages()
-            console.log(data)
-        }).catch(function (err) {
-            if (err.status === 401) {
-                window.location.href = 'login.html'
-            }
-        });
-        $input.val('');
+        )
     }
 
     //Получение пользователей
@@ -74,6 +70,8 @@ $(document).ready(function () {
         $(".user").click(function () {
             const $user = $(this)
 
+            $('#messages').html('') // Очищаем предыдущие сообщения (потому что новые добавляются в конец)
+
             $("#controls").removeClass('hidden')
             $(".user").removeClass('active')
             $user.addClass('active')
@@ -89,34 +87,37 @@ $(document).ready(function () {
             window.location.href = 'login.html'
         }
     })
-
-    //запрос сообщений с пользователем
-    function getGroupMessages() {
-        $.ajax({
-            url: API_BASE + "/messages/grouped?companionUser=" + $(".user.active").attr('data-id'),
-            method: "GET",
-        }).done(function (data) {
-            var messages = "";
-            $.each(data, function (index, message) {
-                messages += `
-                    <div class="message ${currentUser.id === message.userFrom ? "my-message" : "companion-message"}">
-                        <div class="text">${message.text}</div>
-                    </div>
-                `
-            })
-            const $messages = $("#messages")
-            $messages.html(messages)
-            $messages.animate({
-                scrollTop: $messages[0].scrollHeight
-            }, 0);
-        }).catch(function (err) {
-            if (err.status === 401) {
-                window.location.href = 'login.html'
-            }
-        })
-    }
-
-
 });
+
+
+function appendMessagesHTML(messagesArray) {
+    var html = "";
+    $.each(messagesArray, function (index, message) {
+        html += `
+            <div class="message ${currentUser.id === message.userFrom ? "my-message" : "companion-message"}">
+                <div class="text">${message.text}</div>
+            </div>
+        `
+    })
+    const $messages = $("#messages")
+    $messages.append(html) // Используем append, чтобы добавить сообщения в конец
+    $messages.animate({
+        scrollTop: $messages[0].scrollHeight
+    }, 0);
+}
+
+//запрос сообщений с пользователем
+function getGroupMessages() {
+    $.ajax({
+        url: API_BASE + "/messages/grouped?companionUser=" + $(".user.active").attr('data-id'),
+        method: "GET",
+    }).done(function (data) {
+        appendMessagesHTML(data)
+    }).catch(function (err) {
+        if (err.status === 401) {
+            window.location.href = 'login.html'
+        }
+    })
+}
 
 

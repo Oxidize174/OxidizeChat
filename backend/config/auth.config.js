@@ -20,7 +20,6 @@ const loginStrategy = new localStrategy(
             }
         })
             .then(user => {
-                console.log('findOne > user', user)
                 if (!user) {
                     return done(null, false, {message: 'Incorrect username'});
                 }

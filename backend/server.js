@@ -5,6 +5,7 @@ const passport = require("passport")
 const app = express();
 const {loginStrategy} = require("./config/auth.config")
 const flash = require("connect-flash")
+const websocket = require('./config/ws.config')
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser(function (user, done) {
@@ -22,7 +23,8 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
 
-app.use(session({secret: 'secret', resave: false, saveUninitialized: true}))
+const sessionParser = session({secret: 'RANDOM_SECRET_KEY', resave: false, saveUninitialized: true})
+app.use(sessionParser)
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
@@ -43,6 +45,8 @@ db.sequelize.sync({force: true}).then(() => {
 require("./routes")(app);
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+websocket({server, sessionParser})

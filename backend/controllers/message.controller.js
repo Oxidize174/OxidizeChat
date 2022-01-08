@@ -43,6 +43,7 @@ exports.findGroup = (req, res) => {
     }
 
     Message.findAll({
+        order: [['createdAt', 'ASC']],
         where: {
             [Op.or]: [
                 {
