@@ -24,7 +24,7 @@ module.exports = ({server, sessionParser}) => {
     });
 
     wss.on('connection', function (ws, request) {
-        const currentUserId = request.session.passport.user.id;
+        const currentUserId = Number(request.session.passport.user.id);
 
         // Сохраняем сокет новой коннекции
         clients[currentUserId] = ws
@@ -44,10 +44,11 @@ module.exports = ({server, sessionParser}) => {
                     switch (type) {
                         case 'message:send':
                             // Создаем сообщение в Базе Данных
+                            const companionUserId = Number(params.companionUser)
                             const createdMessage = await wsController.createMessage(
                                 params.text,
                                 currentUserId,
-                                params.companionUser,
+                                companionUserId,
                             )
                             if (createdMessage) {
                                 // Преобразовываем в JSON ответные данные клиенту
@@ -58,8 +59,8 @@ module.exports = ({server, sessionParser}) => {
                                 // Отправляем сообщение текущему пользователю
                                 ws.send(resultJSON);
                                 // Отправляем сообщение компаньону
-                                if (params.companionUser !== currentUserId) { // Не нужно отправлять текущему пользователю 2 раза
-                                    const companionWS = clients[params.companionUser]
+                                if (companionUserId !== currentUserId) { // Не нужно отправлять текущему пользователю 2 раза
+                                    const companionWS = clients[companionUserId]
                                     if (companionWS) {
                                         // Если сокет найден (компаньон в сети), то отправляем ему сообщение по сокету
                                         companionWS.send(resultJSON)
