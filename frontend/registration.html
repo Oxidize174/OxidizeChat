@@ -10,19 +10,21 @@
 </head>
 <body>
 <div class="auth">
-    <h1>Регистрация</h1>
+    <h1 class="text1">Регистрация</h1>
     <form>
-        <label for="login">Логин</label>
-        <input type="text" placeholder="Введите логин" name="login" id="login" required>
+        <label for="login">Логин</label><br>
+        <input type="text" placeholder="Введите логин" name="login" id="login" required><br>
 
-        <label for="password">Пароль</label>
-        <input type="password" placeholder="Введите пароль" name="password" id="password" required>
+        <label for="password">Пароль</label><br>
+        <input type="password" placeholder="Введите пароль" name="password" id="password" required><br>
 
-        <label for="name">Имя</label>
-        <input type="text" placeholder="Введите имя" name="name" id="name" required>
+        <label for="name">Имя</label><br>
+        <input type="text" placeholder="Введите имя" name="name" id="name" required><br>
 
-        <button id="submit" type="submit">Зарегистрироваться</button>
-        <span>
+        <div id="error" class="hidden">Ошибка</div>
+
+        <button id="submit" type="submit">Зарегистрироваться</button><br>
+        <span class="account">
             <span>Есть аккаунт?</span>
             <a href="login.html">Войдите</a>
         </span>

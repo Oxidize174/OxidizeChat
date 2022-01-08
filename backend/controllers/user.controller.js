@@ -14,11 +14,11 @@ exports.logout = (req, res) => {
 exports.login = (req, res, next) => {
     const callback = function (err, user, info) {
         if (err) {
-            return res.status(500).send({message: info && info.message || "Unknown error"});
+            return res.status(500).send({message: info && info.message || "Неизвестная ошибка"});
         }
         if (!user) {
             return res.status(401).send({
-                message: info && info.message || "Login failure",
+                message: info && info.message || "Ошибка входа",
             });
         }
         req.logIn(user, function (err) {
@@ -36,45 +36,54 @@ exports.create = (req, res, next) => {
     // Validate request
     if (!req.body.name) {
         res.status(400).send({
-            message: "Name can not be empty!"
+            message: "Имя не может быть пустым"
         });
         return;
     }
     if (!req.body.login) {
         res.status(400).send({
-            message: "Login can not be empty!"
+            message: "Логин не может быть пустым"
         });
         return;
     }
     if (!req.body.password) {
         res.status(400).send({
-            message: "Password can not be empty!"
+            message: "Пароль не может быть пустым"
         });
         return;
     }
-
     const user = {
         name: req.body.name,
         login: req.body.login,
         password: req.body.password
     };
-
-    User.create(user)
-        .then(data => {
-            req.logIn(data, function (err) {
-                if (err) {
-                    next(err)
-                } else {
-                    res.send(data);
-                }
+    User.findOne({
+        where: {
+            login: user.login
+        }
+    }).then(data => {
+        if (data) {
+            res.status(400).send({
+                message: "Пользователь уже существует"
             })
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the User."
-            });
-        });
+        } else {
+            User.create(user)
+                .then(data => {
+                    req.logIn(data, function (err) {
+                        if (err) {
+                            next(err)
+                        } else {
+                            res.send(data);
+                        }
+                    })
+                })
+                .catch(err => {
+                    res.status(500).send({
+                        message: err.message || "Some error occurred while creating the User."
+                    });
+                });
+        }
+    })
 };
 
 exports.findAll = (req, res) => {
@@ -84,8 +93,7 @@ exports.findAll = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
+                message: err.message || "Some error occurred while retrieving users."
             });
         });
 }

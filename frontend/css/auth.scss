@@ -1,16 +1,23 @@
 .auth {
+  width: 50%;
+  margin-left: 36%;
+  margin-top: 5%;
   padding: 16px;
   background-color: white;
   font-family: 'Lato', sans-serif;
+.login{
+  margin-left: auto;
+}
 
   button {
-    background-color: #04AA6D;
+    border-radius: 50px;
+    background-color: #0483aa;
     color: white;
     padding: 16px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
     opacity: 0.9;
 
     &:hover {
@@ -19,7 +26,7 @@
   }
 
   input[type=text], input[type=password] {
-    width: 100%;
+    width: 50%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -38,4 +45,18 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
+  width: 50%;
+}
+
+.account{
+  font-size: 15px;
+  margin: auto;
+}
+
+.text1{
+  margin-left: 9%;
+}
+
+.text2{
+  margin-left: 18%;
 }

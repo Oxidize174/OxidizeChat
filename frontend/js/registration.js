@@ -10,7 +10,12 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             window.location.href = 'chat.html'
+        }).catch(function (err) {
+            if (err.status === 400) {
+                $("#error").html(err.responseJSON.message).removeClass("hidden")
+            }
         });
+
         return false;
     })
 })
