@@ -9,7 +9,7 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  border: 1px solid #e1e1e1;
+  border-left: 1px solid #7e7e7e;
 }
 #mess_area #header {
   display: flex;
@@ -17,8 +17,10 @@
   font-size: 24px;
   color: #000000;
   background-color: #ffffff;
+  border-bottom: 1px solid #7e7e7e;
 }
 #mess_area #exit {
+  margin-top: 3px;
   margin-left: auto;
   width: 80px;
   height: 20px;
@@ -50,6 +52,7 @@
   -webkit-box-shadow: 5px 5px 5px -5px #8ec3f6 inset;
   background-color: #8ec3f6;
   border-radius: 10px;
+  padding-right: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -98,7 +101,7 @@
 }
 #users .user {
   cursor: pointer;
-  padding: 8px;
+  padding: 7px;
   background-color: #ffffff;
   color: #000000;
 }
@@ -119,7 +122,10 @@
 }
 
 #send_button {
-  border: 1px solid #ffffff;
+  margin-left: auto;
+  width: 80px;
+  height: 20px;
+  border: 1px solid #545454;
   border-radius: 25px;
 }
 #send_button:active {
