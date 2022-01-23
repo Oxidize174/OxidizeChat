@@ -1,32 +1,32 @@
 .auth {
+  padding: 40px;
+  margin: 0 auto;
   width: 50%;
-  margin-left: 36%;
-  margin-top: 5%;
-  padding: 16px;
   background-color: white;
   font-family: "Lato", sans-serif;
 }
-.auth .login {
-  margin-left: auto;
+.auth .text3 {
+  margin-left: 15%;
 }
 .auth button {
   border-radius: 50px;
   background-color: #0483aa;
   color: white;
   padding: 16px 20px;
-  margin: 8px 0;
+  margin-left: 15%;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 70%;
   opacity: 0.9;
 }
 .auth button:hover {
   opacity: 1;
 }
 .auth input[type=text], .auth input[type=password] {
-  width: 50%;
+  width: 70%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin-left: 15%;
+  margin-bottom: 3%;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -39,22 +39,31 @@
 #error {
   background-color: #da6363;
   color: white;
-  padding: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-left: 25%;
   border-radius: 5px;
   width: 50%;
 }
 
 .account {
+  margin-top: 15px;
   font-size: 15px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text1 {
-  margin-left: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text2 {
-  margin-left: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=auth.css.map */

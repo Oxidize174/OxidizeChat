@@ -11,17 +11,18 @@
 <body>
 <div class="auth">
     <h1 class="text2">Вход</h1>
-    <form>
-        <label class="login" for="login">Логин</label><br>
+    <form id="form1">
+        <label class="text3" for="login">Логин</label><br>
         <input type="text" placeholder="Введите логин" name="login" id="login" required><br>
 
-        <label for="password">Пароль</label><br>
+        <label class="text3" for="password">Пароль</label><br>
         <input type="password" placeholder="Введите пароль" name="password" id="password" required><br>
 
         <div id="error" class="hidden">Ошибка</div>
-        <button id="submit" type="submit">Войти</button><br>
-        <span>
-            <span class="account">Нет аккаунта?</span>
+        <button id="submit" type="submit">Войти</button>
+        <br>
+        <span class="account">
+            <span>Нет аккаунта?</span>
             <a href="registration.html">Зарегистрируйтесь</a>
         </span>
     </form>
