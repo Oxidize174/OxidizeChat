@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
     }, {
         scopes: {
             withoutPassword: {
-                attributes: { exclude: ['password'] },
+                attributes: {exclude: ['password']},
             }
         }
     });

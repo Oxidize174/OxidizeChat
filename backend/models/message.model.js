@@ -1,8 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
-    const Message = sequelize.define("message", {
+    return sequelize.define("message", {
         text: {
             type: Sequelize.TEXT
         },
+
         userFrom: {
             type: Sequelize.INTEGER,
             references: {
@@ -18,6 +19,4 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
     });
-
-    return Message;
 };

@@ -21,11 +21,11 @@ const loginStrategy = new localStrategy(
         })
             .then(user => {
                 if (!user) {
-                    return done(null, false, {message: 'Incorrect username'});
+                    return done(null, false, {message: 'Неправильный логин'});
                 }
                 if (password !== user.password) {
                     // TODO: Use encryption
-                    return done(null, false, {message: 'Incorrect password'});
+                    return done(null, false, {message: 'Неправильный пароль'});
                 }
                 return done(null, user);
             })

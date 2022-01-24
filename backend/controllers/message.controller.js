@@ -6,13 +6,13 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.text) {
         res.status(400).send({
-            message: "Text can not be empty!"
+            message: "Текст не может быть пустым"
         });
         return;
     }
     if (!req.body.companionUser) {
         res.status(400).send({
-            message: "Users can not be empty!"
+            message: "Пользователи не могут быть пустыми!"
         });
         return;
     }
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Message."
+                    err.message || "Произошла ошибка при создании сообщения."
             });
         });
 };
@@ -37,7 +37,7 @@ exports.create = (req, res) => {
 exports.findGroup = (req, res) => {
     if (!req.query.companionUser) {
         res.status(400).send({
-            message: "Users can not be empty!"
+            message: "Пользователи не могут быть пустыми!"
         });
         return;
     }
@@ -49,10 +49,12 @@ exports.findGroup = (req, res) => {
                 {
                     userTo: req.user.id, // Текущий авторизованный пользователь
                     userFrom: req.query.companionUser, // Собеседник
+
                 },
                 {
                     userFrom: req.user.id,
                     userTo: req.query.companionUser,
+
                 },
             ]
         }
@@ -63,7 +65,7 @@ exports.findGroup = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving messages."
+                    err.message || "Произошла ошибка при получении сообщений."
             });
         });
 };

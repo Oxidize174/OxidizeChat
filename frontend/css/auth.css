@@ -1,23 +1,24 @@
 .auth {
-  padding: 40px;
   margin: 0 auto;
   width: 50%;
-  background-color: white;
+  padding-top: 8%;
   font-family: "Lato", sans-serif;
+  border-radius: 20px;
 }
 .auth .text3 {
   margin-left: 15%;
 }
 .auth button {
-  border-radius: 50px;
+  border-radius: 30px;
   background-color: #0483aa;
   color: white;
   padding: 16px 20px;
-  margin-left: 15%;
+  margin-left: 25%;
+  margin-top: 4%;
   border: none;
   cursor: pointer;
-  width: 70%;
-  opacity: 0.9;
+  width: 50%;
+  opacity: 0.8;
 }
 .auth button:hover {
   opacity: 1;
@@ -29,6 +30,7 @@
   margin-bottom: 3%;
   display: inline-block;
   border: none;
+  border-radius: 5px;
   background: #f1f1f1;
 }
 .auth input[type=text]:focus, .auth input[type=password]:focus {

@@ -1,4 +1,4 @@
-var currentUser
+let currentUser;
 
 $(document).ready(function () {
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
         url: API_BASE + "/users/get",
         method: "GET",
     }).done(function (data) {
-        var users = "";
+        let users = "";
         $.each(data, function (index, val) {
             users += `
                 <div class="user" data-id="${val.id}">
@@ -91,14 +91,28 @@ $(document).ready(function () {
 
 
 function appendMessagesHTML(messagesArray) {
-    var html = "";
+    let html = "";
     $.each(messagesArray, function (index, message) {
+        message.createdAt = undefined;
+        const date = new Date(message.createdAt);
+
+        let resultDate = date.toLocaleString("ru", {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+
+
         html += `
             <div class="message ${currentUser.id === message.userFrom ? "my-message" : "companion-message"}">
                 <div class="text">${message.text}</div>
-            </div>
+                <div class="date">${resultDate}</div>
+                </div>
         `
     })
+
     const $messages = $("#messages")
     $messages.append(html) // Используем append, чтобы добавить сообщения в конец
     $messages.animate({
