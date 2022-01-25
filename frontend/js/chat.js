@@ -1,4 +1,4 @@
-let currentUser;
+var currentUser;
 
 $(document).ready(function () {
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
         url: API_BASE + "/users/get",
         method: "GET",
     }).done(function (data) {
-        let users = "";
+        var users = "";
         $.each(data, function (index, val) {
             users += `
                 <div class="user" data-id="${val.id}">
@@ -91,12 +91,11 @@ $(document).ready(function () {
 
 
 function appendMessagesHTML(messagesArray) {
-    let html = "";
+    var html = "";
     $.each(messagesArray, function (index, message) {
-        message.createdAt = undefined;
         const date = new Date(message.createdAt);
 
-        let resultDate = date.toLocaleString("ru", {
+        var resultDate = date.toLocaleString("ru", {
             day: 'numeric',
             month: 'numeric',
             year: 'numeric',

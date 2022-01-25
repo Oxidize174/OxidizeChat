@@ -3,7 +3,7 @@ const db = require("../models");
 
 function mustBeAuthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.status(401).send({message: 'Authorization required'});
+        return res.status(401).send({message: 'Требуется авторизация'});
     }
     next();
 }

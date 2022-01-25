@@ -22,6 +22,7 @@ exports.create = (req, res) => {
         userFrom: req.user.id, // Текущий авторизованный пользователь
         userTo: req.body.companionUser, // Собеседник
     };
+
     Message.create(message)
         .then(data => {
             res.send(data);

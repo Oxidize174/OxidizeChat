@@ -1,9 +1,15 @@
 .auth {
   margin: 0 auto;
   width: 50%;
-  padding-top: 8%;
+  padding-top: 2%;
   font-family: "Lato", sans-serif;
   border-radius: 20px;
+}
+.auth .chatText {
+  font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .auth .text3 {
   margin-left: 15%;

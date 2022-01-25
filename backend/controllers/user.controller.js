@@ -79,7 +79,7 @@ exports.create = (req, res, next) => {
                 })
                 .catch(err => {
                     res.status(500).send({
-                        message: err.message || "Some error occurred while creating the User."
+                        message: err.message || "Произошла ошибка при создании пользователя."
                     });
                 });
         }
@@ -93,7 +93,7 @@ exports.findAll = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving users."
+                message: err.message || "Произошла ошибка при получении пользователей."
             });
         });
 }
